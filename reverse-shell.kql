@@ -1,0 +1,42 @@
+// Reverse shell / suspicious callback detection
+// I want this for the next lab step where I test a simple reverse shell or a script that calls back out.
+// It looks for the usual shell and script processes making outbound connections.
+// This will probably be noisy, but that is fine for a lab starting point.
+
+let lookback = 1d;
+
+Event
+| where TimeGenerated > ago(lookback)
+| where Source == "Microsoft-Windows-Sysmon"
+| where EventID == 3
+| extend Raw = tostring(RenderedDescription)
+| extend Image = extract(@"(?m)^\s*Image:\s+([^\r\n]+)", 1, Raw)
+| extend User = extract(@"(?m)^\s*User:\s+([^\r\n]+)", 1, Raw)
+| extend Protocol = extract(@"(?m)^\s*Protocol:\s+([^\r\n]+)", 1, Raw)
+| extend SourceIp = extract(@"(?m)^\s*SourceIp:\s+([^\r\n]+)", 1, Raw)
+| extend SourcePort = toint(extract(@"(?m)^\s*SourcePort:\s+([^\r\n]+)", 1, Raw))
+| extend DestinationIp = extract(@"(?m)^\s*DestinationIp:\s+([^\r\n]+)", 1, Raw)
+| extend DestinationHostname = extract(@"(?m)^\s*DestinationHostname:\s+([^\r\n]+)", 1, Raw)
+| extend DestinationPort = toint(extract(@"(?m)^\s*DestinationPort:\s+([^\r\n]+)", 1, Raw))
+| extend ProcessName = tostring(extract(@"([^\\]+)$", 1, Image))
+| where ProcessName in~ (
+    "powershell.exe", "pwsh.exe", "cmd.exe",
+    "wscript.exe", "cscript.exe", "mshta.exe",
+    "rundll32.exe", "regsvr32.exe", "curl.exe",
+    "bitsadmin.exe", "nc.exe", "ncat.exe",
+    "python.exe", "python3.exe"
+)
+| project
+    TimeGenerated,
+    Computer,
+    User,
+    ProcessName,
+    Protocol,
+    SourceIp,
+    SourcePort,
+    DestinationIp,
+    DestinationHostname,
+    DestinationPort,
+    Raw
+| order by TimeGenerated desc
+

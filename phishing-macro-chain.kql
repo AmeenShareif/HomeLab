@@ -1,0 +1,31 @@
+// Phishing / macro execution chain detection
+// I used LibreOffice in the lab, so I included soffice.exe and soffice.bin
+// along with the usual Office apps that could launch script or LOLBin processes.
+// Tuning note: this will probably catch some legit admin work too, so I would trim it later.
+
+let lookback = 1d;
+
+Event
+| where TimeGenerated > ago(lookback)
+| where Source == "Microsoft-Windows-Sysmon"
+| where EventID == 1
+| extend Raw = tostring(RenderedDescription)
+| extend ParentImage = extract(@"(?m)^\s*ParentImage:\s+([^\r\n]+)", 1, Raw)
+| extend Image = extract(@"(?m)^\s*Image:\s+([^\r\n]+)", 1, Raw)
+| extend CommandLine = extract(@"(?m)^\s*CommandLine:\s+([^\r\n]+)", 1, Raw)
+| extend ParentCommandLine = extract(@"(?m)^\s*ParentCommandLine:\s+([^\r\n]+)", 1, Raw)
+| extend User = extract(@"(?m)^\s*User:\s+([^\r\n]+)", 1, Raw)
+| extend ParentName = tostring(extract(@"([^\\]+)$", 1, ParentImage))
+| extend ChildName = tostring(extract(@"([^\\]+)$", 1, Image))
+| where ParentName in~ ("winword.exe", "excel.exe", "powerpnt.exe", "outlook.exe", "onenote.exe", "acrord32.exe", "soffice.exe", "soffice.bin")
+| where ChildName in~ ("powershell.exe", "pwsh.exe", "cmd.exe", "wscript.exe", "cscript.exe", "mshta.exe", "rundll32.exe", "regsvr32.exe", "schtasks.exe", "curl.exe", "bitsadmin.exe")
+| project
+    TimeGenerated,
+    Computer,
+    User,
+    ParentName,
+    ChildName,
+    CommandLine,
+    ParentCommandLine,
+    Raw
+| order by TimeGenerated desc
