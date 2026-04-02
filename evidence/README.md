@@ -12,7 +12,7 @@ This folder has the proof.
 
 ## Proof Images
 
-These are the only images I kept. They show verified rows from the live replay data.
+These are the only images kept. They show verified rows from the live replay data.
 
 - [screenshots/live-sentinel-overview.png](screenshots/live-sentinel-overview.png) - table counts and attack breakdown
 - [screenshots/rdp-brute-force.png](screenshots/rdp-brute-force.png) - RDP brute force row

@@ -205,7 +205,7 @@ nmap -sV -O 192.168.57.10
 - Wrote down the live check in a short note and kept the raw captures archived separately
 
 **Result:**
-- The RDP brute force query history showed `0 results` on the runs I checked
+- The RDP brute force query history showed `0 results` on the checked runs
 - The table picker said `No tables to display` when I searched for `SecurityEvent`
 - The live workspace is not showing the log data I would need to reproduce the attacks again right now
 
@@ -234,7 +234,7 @@ nmap -sV -O 192.168.57.10
 **Result:**
 - The two host-only subnets are finally separated the way the lab needs
 - UbuntuAttacker can reach both pfSense sides now
-- WindowsServer2019 is still finishing setup, so I have to wait before I can set its static IP and install Sysmon
+- WindowsServer2019 is still finishing setup, so the static IP and Sysmon install have to wait
 
 **Note:**
 - This was the biggest infrastructure fix in the lab so far
@@ -264,8 +264,8 @@ nmap -sV -O 192.168.57.10
 - The current Windows guest is still stuck in setup, so I still need to come back for the Windows logon based detections
 
 **Note:**
-- This is the best live proof I have so far that the firewall-side path is wired correctly
-- I still need the Windows VM to finish booting before I can do the brute force and lateral movement runs again on the current build
+- This is the best live proof so far that the firewall-side path is wired correctly
+- The Windows VM still needs to finish booting before the brute force and lateral movement runs can be repeated
 
 **Next:**
 - Keep waiting on WindowsServer2019
@@ -276,7 +276,7 @@ nmap -sV -O 192.168.57.10
 
 ## Session 13
 **Date:** Mar 29 2026
-**Goal:** Close out the project around the evidence I have
+**Goal:** Close out the project around the evidence collected
 
 **Run:**
 - Trimmed the docs so they point at the files that actually prove something
@@ -286,7 +286,7 @@ nmap -sV -O 192.168.57.10
 **Result:**
 - The project is only partially complete for the current scope
 - The strongest proof is still the relay log replay with 401 blocked packets and 200 unique destination ports
-- I do not have a working Windows guest in this build, so I am not claiming the Windows-side retest as finished
+- There is no working Windows guest in this build, so the Windows-side retest is not being claimed as finished
 
 **Note:**
 - This makes the repo honest about what is done and what was blocked
@@ -307,7 +307,7 @@ nmap -sV -O 192.168.57.10
 
 **Result:**
 - Those follow-ups still depend on a usable Windows guest or separate Azure-side setup
-- The current build is fully documented, but the Windows-side retest is still blocked
+- The lab build is fully documented, but the Windows-side retest is still blocked
 
 **Note:**
 - This keeps the repo honest about what is finished and what is still waiting
@@ -358,13 +358,13 @@ nmap -sV -O 192.168.57.10
 - Checked Sysmon Event ID 3 and saw the outbound PowerShell connection from `192.168.57.10` to `192.168.57.1:4444`
 
 **Result:**
-- The LibreOffice macro chain works in the current build
-- The reverse-shell style callback works once I use the correct host-only IP
-- The proof is stronger now because I have both the file write and the Sysmon process/network events
+- The LibreOffice macro chain works in the lab build
+- The reverse-shell style callback works once the correct host-only IP is used
+- The proof is stronger now because it includes both the file write and the Sysmon process/network events
 
 **Note:**
-- I kept the macro query pointed at LibreOffice because that is what I actually used in the lab
-- This is the cleanest proof I have for the phishing / macro and callback part of the project
+- The macro query stays pointed at LibreOffice because that is what was used in the lab
+- This is the cleanest proof for the phishing / macro and callback part of the project
 
 **Next:**
 - Only the AMA migration and playbook cleanup items are left
@@ -375,7 +375,7 @@ nmap -sV -O 192.168.57.10
 **Date:** Mar 31 2026
 **Goal:** Pull real current Sentinel results from the replay tables
 
-**What I did:**
+**Run:**
 - Queried `HomeLabSecurity_CL`, `HomeLabNetwork_CL`, and `HomeLabSysmon_CL` in the live workspace
 - Confirmed the workspace had 18 Security rows, 200 network rows, and 2 Sysmon rows
 - Ran the RDP brute force query and got a real row back with 10 failed attempts from `192.168.57.101`
@@ -383,7 +383,7 @@ nmap -sV -O 192.168.57.10
 - Ran the port scan query and got a real row back with 200 blocked destination ports
 - Ran the macro chain query and reverse shell query and got one real row for each
 
-**What I found:**
+**Result:**
 - The current Sentinel proof is now backed by actual query output, not just the old `0 results` note
 - The custom replay tables make the lab easier to prove because the rows are already in the workspace
 

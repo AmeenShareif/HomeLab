@@ -2,7 +2,7 @@
 
 Date: Mar 29 2026
 
-These were the pfSense pages I used to set the lab block rule.
+These are the pfSense pages used to set the lab block rule.
 
 ## Firewall Rule Form
 
@@ -44,4 +44,4 @@ This is the part that matters because it confirms the rule was actually pushed i
 
 ## Notes
 
-The HTML captures stay in the repo history. This Markdown note is the version I want in the repo.
+The HTML captures stay in the repo history. This Markdown note is the one kept.

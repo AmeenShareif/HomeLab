@@ -4,29 +4,29 @@ Date: Mar 29 2026
 
 Live lab run.
 
-## What I ran
+## Run details
 
 - RDP brute force replay:
-  - From `UbuntuAttacker` I ran 10 failed FreeRDP auth-only attempts against `labuser` on `192.168.57.10`, then I used `Administrator / dees` for a clean success.
+  - `UbuntuAttacker` ran 10 failed FreeRDP auth-only attempts against `labuser` on `192.168.57.10`, then `Administrator / dees` for a clean success.
   - The Windows Security log captured the attacker source IP `192.168.56.101` and the failed and successful auth events.
 - Lateral movement replay:
-  - I ran three failed `Administrator` auth-only attempts and then one success.
+  - Three failed `Administrator` auth-only attempts ran first, then one success.
   - The Windows Security log showed the same-user success after the failures.
 - Port scan replay:
-  - I ran `nmap -Pn -n -p 1-200 -T4 --max-retries 0 192.168.57.10` from `UbuntuAttacker`.
+  - `nmap -Pn -n -p 1-200 -T4 --max-retries 0 192.168.57.10` ran from `UbuntuAttacker`.
   - pfSense `filter.log` showed the blocked packets from `192.168.56.101` to `192.168.57.10`.
 - LibreOffice macro replay:
-  - I used the AttackLab Basic library in LibreOffice and called `AttackLab.Module1.Main` through `officehelper.bootstrap()`.
+  - The AttackLab Basic library in LibreOffice called `AttackLab.Module1.Main` through `officehelper.bootstrap()`.
   - The macro wrote `macro-ran` to `C:\Temp\macro-proof.txt`.
   - Sysmon Event ID 1 showed `soffice.bin` spawning `cmd.exe /c echo macro-ran > C:\Temp\macro-proof.txt`.
 - Reverse-shell style callback:
-  - I launched a hidden `powershell.exe` process on `WindowsServer2019` that ran `C:\Temp\rev_callback.ps1`.
-  - The guest connected back to my host listener on `192.168.57.1:4444`.
+  - A hidden `powershell.exe` process on `WindowsServer2019` ran `C:\Temp\rev_callback.ps1`.
+  - The guest connected back to the host listener on `192.168.57.1:4444`.
   - The listener log recorded the connection from `192.168.57.10:49781`, and Sysmon Event ID 3 showed the outbound PowerShell connection.
 
 ## Macro Proof
 
-I used the LibreOffice bootstrap helper so the macro ran in the lab without guessing at a TCP listener.
+The LibreOffice bootstrap helper made the macro run in the lab without guessing at a TCP listener.
 
 ```text
 BOOTSTRAP_OK

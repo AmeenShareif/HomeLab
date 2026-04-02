@@ -1,6 +1,6 @@
 # Lab Setup Guide
 
-How I built the lab.
+Lab build notes.
 
 ---
 
@@ -53,20 +53,20 @@ Disable DHCP on both.
 **Syslog forwarding:**
 - Status > System Logs > Settings
 - Enable remote logging
-- Set remote syslog server to your log forwarder IP (I used a small Ubuntu VM running rsyslog)
+- Set remote syslog server to your log forwarder IP (a small Ubuntu VM running rsyslog works)
 - Check "Firewall Events"
 
 ---
 
 ## Step 3: Ubuntu attacker VM
 
-**Download:** Any Ubuntu Desktop ISO works here. I used Ubuntu because that is what I had on hand, and it was enough for hydra, nmap, and the rest of the lab tools.
+**Download:** Any Ubuntu Desktop ISO works here. Ubuntu was enough for hydra, nmap, and the rest of the lab tools.
 
 **VM Settings:**
 - 2 CPU, 4GB RAM
 - Network: Host-only vboxnet0
 
-**Install the tools I used:**
+**Install the tools:**
 ```bash
 sudo apt update
 sudo apt install -y hydra nmap
@@ -191,7 +191,7 @@ If you get results, the workspace is receiving logs.
 
 pfSense does not send logs in CEF format natively, so use a relay.
 
-**Option I used: Ubuntu VM as syslog relay**
+**Option used: Ubuntu VM as syslog relay**
 
 ```bash
 # Install rsyslog

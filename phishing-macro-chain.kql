@@ -1,5 +1,5 @@
 // Phishing / macro execution chain detection
-// I used LibreOffice in the lab, so I included soffice.exe and soffice.bin
+// LibreOffice was used in the lab, so soffice.exe and soffice.bin are included
 // along with the usual Office apps that could launch script or LOLBin processes.
 // Tuning note: this will probably catch some legit admin work too, so I would trim it later.
 

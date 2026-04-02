@@ -40,7 +40,7 @@ Result:
 
 ## Lateral Movement Correlation
 
-I used a count-based query here because the replay rows came in with the same ingest-time style timestamps.
+Count-based query here because the replay rows came in with the same ingest-time style timestamps.
 
 Query:
 

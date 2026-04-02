@@ -2,9 +2,9 @@
 
 Date: Mar 29 2026
 
-I replayed the port-scan path through pfSense after I added a tight LAN block rule.
+The port-scan path through pfSense was replayed after a tight LAN block rule was added.
 
-## Rule I Used
+## Rule Used
 
 - Name: `lab-scan-block`
 - Interface: `LAN`
@@ -13,7 +13,7 @@ I replayed the port-scan path through pfSense after I added a tight LAN block ru
 - Action: `block`
 - Logging: on
 
-## Attack I Ran
+## Attack Run
 
 ```bash
 nmap -Pn -sT -T4 --max-retries 0 --host-timeout 2m -p 1-200 192.168.57.10
@@ -27,5 +27,5 @@ nmap -Pn -sT -T4 --max-retries 0 --host-timeout 2m -p 1-200 192.168.57.10
 
 ## Why This Matters
 
-This gives me fresh proof that the port-scan path is still working on the current lab build.
+This gives fresh proof that the port-scan path is still working on the current lab build.
 The firewall is catching the scan, the relay is receiving the logs, and the attack stays isolated from the outside network.

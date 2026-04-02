@@ -1,6 +1,6 @@
 # Home SOC Lab
 
-My home SOC lab runs in VirtualBox on my machine. The core build is done: Windows, pfSense, Ubuntu, Sentinel, and the main detections all work. A couple cleanup items stay deferred.
+This home SOC lab runs in VirtualBox on a local Windows host. The core build is done: Windows, pfSense, Ubuntu, Sentinel, and the main detections all work. A couple cleanup items stay deferred.
 
 ---
 
@@ -77,7 +77,7 @@ These are just hand-made SVGs so the repo is easier to skim.
 - Sysmon on the Windows box
 - pfSense syslog forwarded through a small relay VM
 
-Sysmon config I used: [SwiftOnSecurity sysmon config](https://github.com/SwiftOnSecurity/sysmon-config)
+Sysmon config: [SwiftOnSecurity sysmon config](https://github.com/SwiftOnSecurity/sysmon-config)
 
 ---
 
@@ -115,7 +115,7 @@ The current Sentinel proof is in [evidence/live-sentinel-results.md](evidence/li
 The older empty-workspace check stays archived in [evidence/current-sentinel-verification.md](evidence/current-sentinel-verification.md).
 The Mar 29 local replay is in [evidence/live-completion.md](evidence/live-completion.md).
 The pfSense replay is in [evidence/pfSense-port-scan-replay.md](evidence/pfSense-port-scan-replay.md).
-The proof screenshots are indexed in [evidence/README.md](evidence/README.md) and live under `evidence/screenshots/`.
+The screenshots are indexed in [evidence/README.md](evidence/README.md) and live under `evidence/screenshots/`.
 
 ---
 
@@ -168,7 +168,7 @@ All of the KQL files live in the repo root.
 
 ---
 
-## What I learned / issues I ran into
+## Notes / issues
 
 - MMA setup was annoying until I fixed the key
 - pfSense syslog needed a custom parser

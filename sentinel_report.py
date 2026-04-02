@@ -2,10 +2,10 @@
 sentinel_report.py
 
 Pulls recent incidents from Microsoft Sentinel via the Azure REST API
-and outputs a formatted summary report. 
+and outputs a formatted summary report.
 
-I built this because clicking through the Sentinel UI every time gets tedious
-and I wanted to practice working with the Azure API.
+Built to avoid clicking through the Sentinel UI every time and to practice
+working with the Azure API.
 
 Requirements:
     pip install requests azure-identity

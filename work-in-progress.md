@@ -23,9 +23,8 @@ Current status for the lab.
 | Done | Base lab setup | pfSense, Ubuntu attacker VM, and Windows Server are wired up in VirtualBox |
 | Done | Core detections | RDP brute force, lateral movement, port scan, and IOC hunting |
 | Done | Basic writeups | Setup guide, hunting log, and attack-chain walkthrough |
-| Done | Live Sentinel replay | `HomeLabSecurity_CL`, `HomeLabNetwork_CL`, and `HomeLabSysmon_CL` now return real rows |
 | Deferred | AMA migration | Replace the Windows collector setup later when the guest is usable |
-| Deferred | Playbook automation | Basic Sentinel response flow, but I have not wired it up yet |
+| Deferred | Playbook automation | Basic Sentinel response flow, not wired up yet |
 
 ---
 

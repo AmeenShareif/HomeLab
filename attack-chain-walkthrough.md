@@ -17,7 +17,7 @@ End-to-end macro test from the lab.
 
 ### 1. Macro-enabled document
 
-I used the LibreOffice AttackLab Basic library and called `AttackLab.Module1.Main`.
+LibreOffice AttackLab Basic library called `AttackLab.Module1.Main`.
 
 ### 2. Macro starts
 
@@ -29,7 +29,7 @@ The macro spawned `cmd.exe`.
 
 ### 4. Outbound callback
 
-I then launched a hidden PowerShell callback that connected back to my host listener on `192.168.57.1:4444`.
+A hidden PowerShell callback connected back to the host listener on `192.168.57.1:4444`.
 
 ### 5. Sentinel alert
 
@@ -51,4 +51,4 @@ Sentinel had enough pieces to show the whole chain.
 ## Notes
 
 - Reference chain for the repo
-- Replayed in the current build
+- Replayed in the lab build
