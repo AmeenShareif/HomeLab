@@ -1,0 +1,21 @@
+ioc_type,ioc_value,threat_actor,malware_family,confidence,source,date_added,notes
+ip,185.220.101.45,unknown,unknown,medium,AbuseIPDB,2026-01-15,Tor exit node - seen in brute force campaigns
+ip,194.165.16.11,unknown,unknown,high,GreyNoise,2026-01-15,Mass RDP scanner - confirmed malicious
+ip,45.142.212.100,Fancy Bear,unknown,medium,AlienVault OTX,2026-01-18,Associated with credential stuffing activity
+ip,91.191.209.54,unknown,Mirai,high,Shodan,2026-01-18,Known botnet C2 IP
+ip,5.188.206.14,unknown,unknown,medium,AbuseIPDB,2026-01-22,SMB scanning activity reported
+ip,103.43.75.120,unknown,unknown,low,GreyNoise,2026-01-22,Background scanner - low confidence malicious
+domain,update-service-microsoft.com,unknown,unknown,high,VirusTotal,2026-01-25,Typosquat domain used in phishing
+domain,secure-login-portal.net,unknown,unknown,high,URLhaus,2026-01-25,Phishing kit landing page
+domain,cdn-content-delivery.xyz,unknown,unknown,medium,AlienVault OTX,2026-02-01,Suspicious - newly registered lookalike domain
+domain,windowsupdate-kb.com,unknown,unknown,high,VirusTotal,2026-02-01,Malware dropper - fake Windows update
+hash_sha256,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,unknown,unknown,low,VirusTotal,2026-02-03,Empty file hash - used as baseline test
+hash_sha256,44d88612fea8a8f36de82e1278abb02f,unknown,Emotet,high,MalwareBazaar,2026-02-03,Emotet loader sample
+hash_sha256,3395856ce81f2b7382dee72602f798b642f14140,unknown,Cobalt Strike,high,MalwareBazaar,2026-02-05,Cobalt Strike beacon - common red team tool
+hash_md5,098f6bcd4621d373cade4e832627b4f6,unknown,unknown,low,VirusTotal,2026-02-05,Test hash - not malicious
+ip,198.199.95.18,unknown,unknown,medium,AbuseIPDB,2026-02-10,SSH brute force source - DigitalOcean VPS
+ip,134.122.122.244,unknown,unknown,medium,GreyNoise,2026-02-10,Port scanner - multiple protocols
+domain,paypa1-secure.com,unknown,unknown,high,PhishTank,2026-02-12,PayPal phishing - active campaign
+hash_sha256,7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069,unknown,unknown,low,VirusTotal,2026-02-12,Benign test file hash
+ip,89.248.167.131,Lazarus Group,unknown,medium,AlienVault OTX,2026-02-15,Associated with DPRK threat actor activity
+domain,microsoftonline-auth.com,unknown,unknown,high,VirusTotal,2026-02-15,O365 credential harvesting page

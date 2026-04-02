@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Home SOC Lab detection flow</title>
+  <desc id="desc">Simple diagram showing how attacks produce logs, how they are normalized, and how Sentinel rules turn them into incidents and notes.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbfaf7" />
+      <stop offset="100%" stop-color="#f0f4f8" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4d5966" />
+    </marker>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #1f2933; }
+      .subtitle { font: 400 15px Arial, sans-serif; fill: #5f6b76; }
+      .label { font: 700 20px Arial, sans-serif; fill: #1f2933; }
+      .small { font: 400 14px Arial, sans-serif; fill: #3e4a55; }
+      .tiny { font: 400 12px Arial, sans-serif; fill: #5f6b76; }
+      .box { rx: 18; ry: 18; stroke-width: 2.5; }
+      .line { fill: none; stroke: #4d5966; stroke-width: 3; marker-end: url(#arrow); }
+      .soft { fill: none; stroke: #6b7280; stroke-width: 2.5; stroke-dasharray: 7 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="720" fill="url(#bg)" />
+
+  <text x="60" y="58" class="title">How detections are built</text>
+  <text x="60" y="84" class="subtitle">Attack traffic becomes logs, then queries, then an incident I can write up</text>
+
+  <rect x="60" y="185" width="240" height="110" class="box" fill="#ffe9e9" stroke="#d37a7a" />
+  <text x="180" y="225" text-anchor="middle" class="label">Attack sim</text>
+  <text x="180" y="251" text-anchor="middle" class="small">hydra, nmap, crackmapexec</text>
+
+  <rect x="350" y="145" width="280" height="180" class="box" fill="#eef2f5" stroke="#6c7a89" />
+  <text x="490" y="185" text-anchor="middle" class="label">Raw logs</text>
+  <text x="490" y="213" text-anchor="middle" class="small">SecurityEvent</text>
+  <text x="490" y="237" text-anchor="middle" class="small">Sysmon</text>
+  <text x="490" y="261" text-anchor="middle" class="small">pfSense Syslog</text>
+  <text x="490" y="288" text-anchor="middle" class="tiny">this is where the lab starts to feel real</text>
+
+  <rect x="690" y="165" width="220" height="140" class="box" fill="#eef8ee" stroke="#4f8a4e" />
+  <text x="800" y="205" text-anchor="middle" class="label">Normalize</text>
+  <text x="800" y="231" text-anchor="middle" class="small">parser / cleanup</text>
+  <text x="800" y="257" text-anchor="middle" class="tiny">pfsense_parser.py</text>
+  <text x="800" y="279" text-anchor="middle" class="tiny">pfsense-parser.kql</text>
+
+  <rect x="980" y="145" width="160" height="180" class="box" fill="#efeafb" stroke="#7b64c1" />
+  <text x="1060" y="185" text-anchor="middle" class="label">Sentinel</text>
+  <text x="1060" y="212" text-anchor="middle" class="small">workspace</text>
+  <text x="1060" y="240" text-anchor="middle" class="tiny">incidents</text>
+  <text x="1060" y="260" text-anchor="middle" class="tiny">alerts</text>
+  <text x="1060" y="280" text-anchor="middle" class="tiny">watchlists</text>
+
+  <rect x="380" y="410" width="240" height="120" class="box" fill="#fff3df" stroke="#d19a3d" />
+  <text x="500" y="448" text-anchor="middle" class="label">KQL rules</text>
+  <text x="500" y="474" text-anchor="middle" class="small">rdp, lateral movement, scan</text>
+
+  <rect x="700" y="410" width="250" height="120" class="box" fill="#f6f6f6" stroke="#8a8a8a" />
+  <text x="825" y="448" text-anchor="middle" class="label">Write-up</text>
+  <text x="825" y="474" text-anchor="middle" class="small">threat-hunting-log.md</text>
+
+  <path class="line" d="M300 240 C320 240, 330 240, 350 240" />
+  <path class="line" d="M630 240 C650 240, 665 240, 690 240" />
+  <path class="line" d="M910 240 C940 240, 950 240, 980 240" />
+  <path class="line" d="M1060 325 C970 355, 790 385, 620 410" />
+  <path class="line" d="M620 470 C650 470, 675 470, 700 470" />
+
+  <path class="soft" d="M490 325 C490 360, 490 375, 500 410" />
+
+  <text x="312" y="212" class="tiny">lab noise</text>
+  <text x="650" y="204" class="tiny">structured fields</text>
+  <text x="920" y="204" class="tiny">KQL and hunting</text>
+  <text x="570" y="565" class="tiny">This is basically the loop I keep repeating while testing detections.</text>
+</svg>

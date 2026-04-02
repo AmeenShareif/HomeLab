@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Home SOC Lab topology</title>
+  <desc id="desc">Simple diagram showing an Ubuntu attacker VM, pfSense, Windows Server, a syslog relay, and Microsoft Sentinel.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf8f2" />
+      <stop offset="100%" stop-color="#eef3f7" />
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4d5966" />
+    </marker>
+    <style>
+      .title { font: 700 30px Arial, sans-serif; fill: #1f2933; }
+      .subtitle { font: 400 15px Arial, sans-serif; fill: #5f6b76; }
+      .label { font: 700 20px Arial, sans-serif; fill: #1f2933; }
+      .small { font: 400 14px Arial, sans-serif; fill: #3e4a55; }
+      .tiny { font: 400 12px Arial, sans-serif; fill: #5f6b76; }
+      .box { rx: 18; ry: 18; stroke-width: 2.5; }
+      .line { fill: none; stroke: #4d5966; stroke-width: 3; marker-end: url(#arrow); }
+      .dashed { fill: none; stroke: #6b7280; stroke-width: 2.5; stroke-dasharray: 8 6; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="720" fill="url(#bg)" />
+
+  <text x="60" y="58" class="title">Home SOC Lab topology</text>
+  <text x="60" y="84" class="subtitle">VirtualBox host-only networks with pfSense in the middle</text>
+
+  <rect x="70" y="170" width="250" height="120" class="box" fill="#eaf1ff" stroke="#5b77d1" />
+  <text x="195" y="210" text-anchor="middle" class="label">Ubuntu attacker VM</text>
+  <text x="195" y="236" text-anchor="middle" class="small">192.168.56.101</text>
+  <text x="195" y="260" text-anchor="middle" class="tiny">attack traffic / testing</text>
+
+  <rect x="430" y="145" width="300" height="170" class="box" fill="#f7f0e4" stroke="#a67c52" />
+  <text x="580" y="188" text-anchor="middle" class="label">pfSense</text>
+  <text x="580" y="214" text-anchor="middle" class="small">router, firewall, syslog source</text>
+  <text x="580" y="245" text-anchor="middle" class="tiny">LAN: 192.168.56.2</text>
+  <text x="580" y="266" text-anchor="middle" class="tiny">OPT1: 192.168.57.2</text>
+  <text x="580" y="287" text-anchor="middle" class="tiny">handles segmentation between subnets</text>
+
+  <rect x="855" y="170" width="275" height="120" class="box" fill="#eef8ee" stroke="#4f8a4e" />
+  <text x="992" y="210" text-anchor="middle" class="label">Windows Server 2019</text>
+  <text x="992" y="236" text-anchor="middle" class="small">192.168.57.10</text>
+  <text x="992" y="260" text-anchor="middle" class="tiny">SecurityEvent + Sysmon</text>
+
+  <rect x="450" y="395" width="260" height="100" class="box" fill="#fff3df" stroke="#d19a3d" />
+  <text x="580" y="436" text-anchor="middle" class="label">Ubuntu relay</text>
+  <text x="580" y="462" text-anchor="middle" class="small">syslog forwarder</text>
+
+  <rect x="810" y="380" width="330" height="140" class="box" fill="#efeafb" stroke="#7b64c1" />
+  <text x="975" y="422" text-anchor="middle" class="label">Microsoft Sentinel</text>
+  <text x="975" y="448" text-anchor="middle" class="small">Log Analytics workspace</text>
+  <text x="975" y="474" text-anchor="middle" class="tiny">alerts, incidents, hunting queries</text>
+
+  <path class="line" d="M320 230 C365 230, 390 230, 430 230" />
+  <path class="line" d="M730 230 C775 230, 805 230, 855 230" />
+  <path class="line" d="M580 315 C580 345, 580 360, 580 395" />
+  <path class="line" d="M710 450 C745 450, 770 450, 810 450" />
+  <path class="line" d="M992 290 C992 335, 992 350, 975 380" />
+
+  <text x="355" y="200" class="tiny">host-only subnet</text>
+  <text x="785" y="200" class="tiny">host-only subnet</text>
+  <text x="448" y="365" class="tiny">syslog</text>
+  <text x="744" y="435" class="tiny">forwarded logs</text>
+  <text x="1008" y="345" class="tiny">event logs</text>
+</svg>

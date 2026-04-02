@@ -1,0 +1,41 @@
+// Port Scan Detection
+// Detects a single source IP hitting many destination ports in a short window
+// Uses the pfSense filterlog parser saved as a Sentinel function named pfSenseLogs
+//
+// Tested against a blocked nmap scan from the Ubuntu attacker VM
+
+let timewindow = 2m;
+let port_threshold = 20;
+
+pfSenseLogs
+| where TimeGenerated > ago(1h)
+| where Action == "block"
+| where Protocol in ("tcp", "udp")
+| summarize
+    PortsScanned = dcount(DestinationPort),
+    PortList = make_set(DestinationPort),
+    ScanStart = min(TimeGenerated),
+    ScanEnd = max(TimeGenerated),
+    PacketCount = count()
+    by SourceIP, DestinationIP, bin(TimeGenerated, timewindow)
+| where PortsScanned >= port_threshold
+| extend
+    DurationSeconds = datetime_diff('second', ScanEnd, ScanStart)
+| extend
+    PortsPerSecond = iif(
+        DurationSeconds <= 0,
+        real(null),
+        round(toreal(PortsScanned) / todouble(DurationSeconds), 2)
+    )
+| project
+    TimeGenerated,
+    SourceIP,
+    DestinationIP,
+    PortsScanned,
+    PacketCount,
+    DurationSeconds,
+    PortsPerSecond,
+    ScanStart,
+    ScanEnd,
+    PortList
+| order by PortsScanned desc
